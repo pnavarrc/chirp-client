@@ -1,0 +1,24 @@
+{
+  "name": "chirp-client",
+  "version": "0.1.0",
+  "description": "Geotagged tweets explorer - Example for the book Mastering D3.js",
+  "main": "Gruntfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pnavarrc/chirp-client.git"
+  },
+  "keywords": [
+    "d3",
+    "twitter",
+    "topojson"
+  ],
+  "author": "Pablo Navarro Castillo <pnavarrc@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pnavarrc/chirp-client/issues"
+  },
+  "homepage": "https://github.com/pnavarrc/chirp-client"
+}
