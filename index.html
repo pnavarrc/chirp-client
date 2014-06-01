@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>Real-Time Twitter Explorer</title>
+
+    <script charset="utf-8" src="dist/js/dependencies.js"></script>
+    <link href='http://fonts.googleapis.com/css?family=Droid+Sans' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="dist/css/main.css"/>
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <div class="row header">
+        <!-- Title and about -->
+        <div class="col-md-6">
+          <h1 class="title">real time twitter</h1>
+          <div id="topics-form"></div>
+        </div>
+
+        <!-- Barchart -->
+        <div class="col-md-6">
+          <div id="topics-barchart" class="barchart-block"></div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-12">
+          <div id="topics-map"></div>
+        </div>
+      </div>
+    </div>
+
+    <script type='text/template' id='topics-template'>
+      <form class="form-inline" role="form">
+        <div class="form-group">
+          <label class="sr-only" for="new-topic">New Topic</label>
+          <input type="text" class="form-control" id="new-topic" placeholder="Add a word">
+          <a href="#">Add</a>
+        </div>
+      </form>
+    </script>
+
+    <script src="src/charts/charts.js"></script>
+    <script src="src/charts/barchart.js"></script>
+    <script src="src/charts/map.js"></script>
+
+    <script src="src/app/app.js"></script>
+    <script src="src/app/setup.js"></script>
+
+    <!-- Models -->
+    <script src="src/app/models/topic.js"></script>
+
+    <!-- Collections -->
+    <script src="src/app/collections/topics.js"></script>
+
+    <!-- Views -->
+    <script src="src/app/views/topics.js"></script>
+
+    <script src="src/app/views/topics-barchart.js"></script>
+    <script src="src/app/views/topics-map.js"></script>
+
+    </body>
+</html>
