@@ -1,4 +1,3 @@
-chirp-client
-============
+# Chirp Client: Geotagged Tweets Explorer
 
-Geotagged tweets explorer - Example for the book Mastering D3.js
+_Example for the book Mastering D3.js_

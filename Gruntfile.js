@@ -15,6 +15,7 @@ module.exports = function(grunt) {
                     'bower_components/bootstrap/dist/js/bootstrap.min.js',
                     'bower_components/underscore/underscore.js',
                     'bower_components/backbone/backbone.js',
+                    'bower_components/socket.io-client/socket.io.js',
                     'bower_components/d3/d3.js',
                     'bower_components/topojson/topojson.js',
                 ],
