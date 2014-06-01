@@ -1,13 +1,12 @@
 App.Collections.Topics = Backbone.Collection.extend({
 
     colors: [
-        '#556270',  // slate
-        '#4ECDC4',  // light blue
-        '#C7F464',  // lemmon
-        '#FF6B6B',  // pink
-        '#C44D58'   // red
+        '#00aaff',  // light blue
+        '#8cff00',  // green
+        '#ffd900',  // yellow
+        '#df00ff',  // pink
+        '#e52d72'   // cherry
     ],
-
 
     model: App.Models.Topic,
 

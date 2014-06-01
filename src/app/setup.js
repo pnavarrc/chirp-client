@@ -23,6 +23,10 @@ $(function() {
         app.topics.addTweet(tweet);
     });
 
+    socket.on('connect', function() {
+        console.log('connected with ID', socket.id);
+    });
+
     app.barchart = new App.Views.TopicsBarchart({
         el: $('#topics-barchart'),
         collection: app.topics
