@@ -15,10 +15,6 @@ charts.map = function() {
         id: function(d) { return d.id; }
     };
 
-    function mapInit(selection) {
-
-    }
-
     function chart(selection) {
         selection.each(function(data) {
 

@@ -2,12 +2,7 @@
 // ---------
 
 // Color Scheme
-@color-orange: #ecb828;
-@color-red:    #F15944;
-@color-green:  #1F7C5D;
-@color-blue:   #05395E;
-@color-slate:  #556270;
-@color-pacifica: #00A0B0;
+@color-sea:  #00A0B0;
 
 // Grayscale
 @color-black:        #000;
@@ -27,22 +22,54 @@
 
 @font-size-small:  12px;
 
+// Colors
+@body-bg:       @color-grey-lighter;
+@text-color:    @color-grey-darker;
+@brand-primary: @color-sea;
 
-// Color
-@body-bg:    @color-grey-lighter;
-@text-color: @color-grey-darker;
 
-// Header
+// Page Header
+// -----------
+
 .header {
-    border-top:    solid 8px @color-grey;
-    border-bottom: solid 1px @color-pacifica;
+
+    border-top:    solid 8px @brand-primary;
+    border-bottom: solid 1px @brand-primary;
+
+    // Title and lead paragraph
 
     .title {
-        color: @color-pacifica;
-        font-size: 28px;
+        color: @brand-primary;
+        font-size: 24px;
         text-transform: uppercase;
     }
+
+    .lead {
+        font-size: 16px;
+        color: @color-grey;
+        font-style: italic;
+    }
 }
+
+// Input Form
+// ----------
+
+// Customize Bootstrap variables
+@input-bg:                 @color-grey-lighter;
+@input-bg-disabled:        @color-grey-light;
+
+@input-color:              @color-grey;
+@input-border:             @color-grey-light;
+@input-border-radius:      @border-radius-base;
+@input-border-focus:       @brand-primary;
+@input-color-placeholder:  @color-grey-light;
+
+#topics-form {
+    margin-top: 22px;
+}
+
+// Charts
+// ------
 
 // Map
 // ---
@@ -55,12 +82,6 @@
     fill: @color-grey-light;
 }
 
-// Charts
-h1.title {
-    color: @color-pacifica;
-    font-size: 18px;
-    text-transform: uppercase;
-}
 
 // Barchart
 .barchart-block {
@@ -72,8 +93,9 @@ h1.title {
     width: 100%;
 }
 
-// Chart
+// Barchart
 .barchart {
+
     .barchart-label {
         font-family: @font-family-base;
         font-size: @font-size-small;
