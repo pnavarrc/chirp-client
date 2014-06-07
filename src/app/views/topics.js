@@ -3,7 +3,7 @@ App.Views.Topics = Backbone.View.extend({
     template: _.template($('#topics-template').html()),
 
     events: {
-        'click a': 'addTopic',
+        'keypress #new-topic': 'addOnEnter',
     },
 
     initialize: function (options) {
@@ -28,5 +28,20 @@ App.Views.Topics = Backbone.View.extend({
             this.collection.add({word: newTopic, color: '#babdb6'});
             this.$('#new-topic').val('');
         }
+    },
+
+    addOnEnter: function(e) {
+
+        var ENTER_KEY = 13,
+            ESC_KEY = 27;
+
+        var word = this.$('#new-topic').val().trim();
+
+        if (event.which !== ENTER_KEY || !word) {
+            return;
+        }
+
+        this.collection.add({word: word});
+        this.$('#new-topic').val('');
     }
 });

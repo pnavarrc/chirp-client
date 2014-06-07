@@ -33,11 +33,11 @@ $(function() {
     });
 
 
-    d3.json('dist/data/land.json', function(error, geodata) {
+    d3.json('dist/data/countries.json', function(error, geodata) {
 
         if (error) { return error; }
 
-        var geojson = topojson.feature(geodata, geodata.objects.ne_50m_land);
+        var geojson = topojson.feature(geodata, geodata.objects.countries);
 
         app.map = new App.Views.TopicsMap({
             el: $('#topics-map'),
