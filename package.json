@@ -1,7 +1,7 @@
 {
   "name": "chirp-client",
   "version": "0.1.0",
-  "description": "Geotagged tweets explorer - Example for the book Mastering D3.js",
+  "description": "Visualization for Geotagged Tweets",
   "main": "Gruntfile.js",
   "repository": {
     "type": "git",
