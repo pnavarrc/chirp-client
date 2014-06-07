@@ -1,5 +1,8 @@
+// Topics Collection
+// -----------------
 App.Collections.Topics = Backbone.Collection.extend({
 
+    // Color for each topic
     colors: [
         '#00aaff',  // light blue
         '#ffd900',  // yellow
@@ -8,9 +11,13 @@ App.Collections.Topics = Backbone.Collection.extend({
         '#7ee500',  // green
     ],
 
+    //
     model: App.Models.Topic,
 
+    // Collection Initialization
     initialize: function() {
+
+        // Set the topic color when added
         this.on('add', function(model) {
             model.set('color', this.colors[this.length - 1]);
         });
