@@ -1,3 +1,4 @@
+// Bar Chart View
 App.Views.TopicsBarchart = Backbone.View.extend({
 
     chart: charts.barChart()
@@ -9,7 +10,7 @@ App.Views.TopicsBarchart = Backbone.View.extend({
 
     initialize: function () {
 
-        this.listenTo(this.collection, 'change:items', this.render);
+        this.listenTo(this.collection, 'change:tweets', this.render);
         this.listenTo(this.collection, 'add', this.render);
     },
 

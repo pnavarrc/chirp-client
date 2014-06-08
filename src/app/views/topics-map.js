@@ -1,3 +1,4 @@
+// Topics Map View
 App.Views.TopicsMap = Backbone.View.extend({
 
     chart: charts.map()
@@ -7,8 +8,7 @@ App.Views.TopicsMap = Backbone.View.extend({
     initialize: function (options) {
 
         this.chart.geojson(options.geojson);
-
-        this.listenTo(this.collection, 'change:items', this.render);
+        this.listenTo(this.collection, 'change:tweets', this.render);
     },
 
     render: function () {

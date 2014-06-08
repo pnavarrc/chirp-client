@@ -1,17 +1,14 @@
 // Topic Model
-// -----------
 App.Models.Topic = Backbone.Model.extend({
 
+    // The `word` attribute will identify uniquely our topic
     idAttribute: 'word',
 
-    initialize: function() {
-
-    },
-
+    // Default model values
     defaults: function() {
         return {
-            word: '',
-            color: '#555',
+            word:   'topic',
+            color:  '#555',
             tweets: []
         };
     }
