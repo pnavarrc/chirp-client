@@ -1,35 +1,37 @@
 // Topics Collection
-// -----------------
 App.Collections.Topics = Backbone.Collection.extend({
 
-    // Color for each topic
-    colors: [
-        '#00aaff',  // light blue
-        '#ffd900',  // yellow
-        '#df00ff',  // pink
-        '#e52d72',  // cherry
-        '#7ee500',  // green
-    ],
-
-    //
+    // The collection model
     model: App.Models.Topic,
 
     // Collection Initialization
-    initialize: function() {
+    initialize: function(models, options) {
 
-        // Set the topic color when added
-        this.on('add', function(model) {
-            model.set('color', this.colors[this.length - 1]);
+        this.socket = options.socket;
+
+        // Store the current 'this' context
+        var self = this;
+
+        // Adds the tweet to the corresponding topic when they arrive
+        this.socket.on('tweet', function(tweet) {
+            self.addTweet(tweet);
+        });
+
+        // Set the new topic's color and sends the new topic to the server
+        this.on('add', function(topic) {
+            topic.set('color', App.Colors[this.length - 1]);
+            this.socket.emit('add', {word: topic.get('word')});
         });
     },
 
     addTweet: function(tweet) {
 
+        // Gets the corresponding model instance.
         var topic = this.get(tweet.word);
 
+        // If the model instance is found, push the tweet to the tweets array.
         if (topic) {
-            topic.get('tweets').push(tweet);
-            this.trigger('change:items');
+            topic.addTweet(tweet);
         }
     }
 });

@@ -13,9 +13,19 @@
 
   <body>
 
-    <div class="container">
+    <!-- Input Element Template -->
+    <script type='text/template' id='topics-template'>
+        <div class="form-group">
+          <label class="sr-only" for="new-topic">New Topic</label>
+          <input type="text" id="new-topic"
+            class="form-control input-sm"
+            placeholder="Add a new topic">
+        </div>
+    </script>
 
-      <div class="row header">
+    <!-- Application Template -->
+    <script type='text/template' id='application-template'>
+        <div class="row header">
         <!-- Title and about -->
         <div class="col-md-6">
           <h1 class="title">chirp explorer</h1>
@@ -34,23 +44,16 @@
           <div id="topics-map"></div>
         </div>
       </div>
-    </div>
-
-    <script type='text/template' id='topics-template'>
-        <div class="form-group">
-          <label class="sr-only" for="new-topic">New Topic</label>
-          <input type="text" id="new-topic"
-            class="form-control input-sm"
-            placeholder="Add a new topic">
-        </div>
     </script>
+
+    <div class="container" id='application-container'></div>
 
     <script src="src/charts/charts.js"></script>
     <script src="src/charts/barchart.js"></script>
     <script src="src/charts/map.js"></script>
 
     <script src="src/app/app.js"></script>
-    <script src="src/app/setup.js"></script>
+
 
     <!-- Models -->
     <script src="src/app/models/topic.js"></script>
@@ -59,10 +62,13 @@
     <script src="src/app/collections/topics.js"></script>
 
     <!-- Views -->
-    <script src="src/app/views/topics.js"></script>
+    <script src="src/app/views/application.js"></script>
 
+    <script src="src/app/views/topics-input.js"></script>
     <script src="src/app/views/topics-barchart.js"></script>
     <script src="src/app/views/topics-map.js"></script>
+
+    <script src="src/app/setup.js"></script>
 
     </body>
 </html>
