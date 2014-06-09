@@ -1,75 +1,60 @@
-
-// var app = {},
-//     socket;
-
-// $(function() {
-
-//     app.topics = new App.Collections.Topics();
-
-//     app.topicsForm = new App.Views.Topics({
-//         el: '#topics-form',
-//         collection: app.topics
-//     });
-
-//     socket = io.connect('http://localhost:9720');
-
-//     app.topicsForm.render();
-
-//     app.topics.on('add', function(item) {
-//         socket.emit('add', item.toJSON());
-//     });
-
-//     socket.on('tweet', function(tweet) {
-//         app.topics.addTweet(tweet);
-//     });
-
-//     socket.on('connect', function() {
-//         console.log('connected with ID', socket.id);
-//     });
-
-//     app.barchart = new App.Views.TopicsBarchart({
-//         el: $('#topics-barchart'),
-//         collection: app.topics
-//     });
-
-
-//     d3.json('dist/data/countries.json', function(error, geodata) {
-
-//         if (error) { return error; }
-
-//         var geojson = topojson.feature(geodata, geodata.objects.countries);
-
-//         app.map = new App.Views.TopicsMap({
-//             el: $('#topics-map'),
-//             collection: app.topics,
-//             geojson: geojson
-//         });
-
-//         app.map.render();
-
-//     });
-
-// });
-
-// Create the Application View
+// Container for the application instances
 var app = {};
 
-
-
+// Invoke the function when the document is ready
 $(function() {
 
-    // Render the application
-    app.applicationView = new App.Views.Application();
+    // Create the application view and renders it
+    app.applicationView = new App.Views.Application({
+        el: '#application-container'
+    });
     app.applicationView.render();
 
-    app.topicList = new App.Collections.Topics({
+    // Creates the topics collection, passing the socket instance
+    app.topicList = new App.Collections.Topics([], {
         socket: io.connect('http://localhost:9720')
     });
 
-    app.topicsInputView = new App.Views.Topics({
+    // Topic Views
+    // -----------
+
+    // Input View
+    app.topicsInputView = new App.Views.TopicsInput({
+        el: '#topics-form',
         collection: app.topicList
     });
 
-    app.topicsInputView.render();
+    // Bar Chart View
+    app.topicsBarchartView = new App.Views.TopicsBarchart({
+        el: '#topics-barchart',
+        collection: app.topicList
+    });
 
+    // Map View
+    app.topicsMapView = new App.Views.TopicsMap({
+        el: '#topics-map',
+        collection: app.topicList
+    });
+
+    // Loads the TopoJSON countries file
+    d3.json('dist/data/countries.json', function(error, geodata) {
+
+        if (error) {
+            // Handles errors getting or parsing the file
+            console.error('Error getting or parsing the TopoJSON file');
+            throw error;
+        }
+
+        // Transform from TopoJSON to GeoJSON
+        var geojson = topojson.feature(geodata, geodata.objects.countries);
+
+        // Update the map chart and render the map view
+        app.topicsMapView.chart.geojson(geojson);
+        app.topicsMapView.render();
+    });
+
+    // Render the Topic Views
+    app.topicsInputView.render();
+    app.topicsBarchartView.render();
+    app.topicsMapView.render();
 });

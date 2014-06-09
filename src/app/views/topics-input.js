@@ -1,47 +1,44 @@
-App.Views.Topics = Backbone.View.extend({
+App.Views.TopicsInput = Backbone.View.extend({
 
     template: _.template($('#topics-template').html()),
 
     events: {
-        'keypress #new-topic': 'addOnEnter',
+        'keypress input': 'addOnEnter',
     },
 
     initialize: function (options) {
-        // this.listenTo(this.collection, 'add', this.render);
+        // Disable the input elements when the collection has five items
+        this.listenTo(this.collection, 'add', this.disableInput);
     },
 
     render: function () {
+        // Renders the input element in the view element
         this.$el.html(this.template(this.collection.toJSON()));
         return this;
     },
 
-    addTopic: function(event) {
-
-        var newTopic = this.$('#new-topic').val().trim();
-
-        // Limit to 5 topics
-        if (this.collection.length < 5) {
-
-            // Extract only one word
-            newTopic = newTopic.split(' ').pop();
-
-            this.collection.add({word: newTopic, color: '#babdb6'});
-            this.$('#new-topic').val('');
+    disableInput: function() {
+        // Disable the input element if the collection has five or more items
+        if (this.collection.length >= 5) {
+            this.$('input').attr('disabled', true);
         }
     },
 
     addOnEnter: function(e) {
 
-        var ENTER_KEY = 13,
-            ESC_KEY = 27;
+        // Numeric code for the Enter key
+        var ENTER_KEY = 13;
 
-        var word = this.$('#new-topic').val().trim();
+        // Content of the input element
+        var word = this.$('input').val().trim();
 
-        if (event.which !== ENTER_KEY || !word) {
+        // Nothing is done until the user hits Enter
+        if (event.which !== ENTER_KEY) {
             return;
         }
 
+        // Adds the topic to the collection and cleans the input
         this.collection.add({word: word});
-        this.$('#new-topic').val('');
+        this.$('input').val('');
     }
 });
