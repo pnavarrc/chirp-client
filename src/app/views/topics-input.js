@@ -3,7 +3,7 @@ App.Views.TopicsInput = Backbone.View.extend({
     template: _.template($('#topics-template').html()),
 
     events: {
-        'keypress input': 'addOnEnter',
+        'submit #topic-form': 'addOnSubmit'
     },
 
     initialize: function (options) {
@@ -24,21 +24,18 @@ App.Views.TopicsInput = Backbone.View.extend({
         }
     },
 
-    addOnEnter: function(e) {
+    addOnSubmit: function(e) {
 
-        // Numeric code for the Enter key
-        var ENTER_KEY = 13;
+        // Prevents the page from reloading
+        e.preventDefault();
 
         // Content of the input element
         var word = this.$('input').val().trim();
 
-        // Nothing is done until the user hits Enter
-        if (event.which !== ENTER_KEY) {
-            return;
-        }
-
         // Adds the topic to the collection and cleans the input
-        this.collection.add({word: word});
-        this.$('input').val('');
+        if (word) {
+            this.collection.add({word: word});
+            this.$('input').val('');
+        }
     }
 });
